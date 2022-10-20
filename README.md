@@ -4,7 +4,7 @@ This repo holds a basic shader for use with Black Ops III weapons that mimics Mo
 
 # Installation
 
-To install download the latest [Release](/releases) and unpack the zip file to Black Ops III's directory. Once done you can move on to usage, it's that simple!
+To install download the latest [Release](/releases/latest) and unpack the zip file to Black Ops III's directory. Once done you can move on to usage, it's that simple!
 
 # Usage
 
