@@ -1,0 +1,96 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Specialty"
+	availablePrefixes = "mc/ mcs/"
+	gameOnly = true
+	renderFlags = RenderFlags()
+	{
+		isEmissive = true
+		needCurrentResolve = true
+		needCurrentDepthResolve = true
+	}
+}
+
+//----------------------------------------------------------------
+
+Texture("distortionMap")
+{
+	image 	 = Image(<colorMap00, $identitynormalmap>)
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		category	= "Textures"
+		title		= "Distortion Map"
+		sortindex	= "1"
+	}
+}
+
+float1("zAmount")
+{
+	x     = "1.0 / <cg01_x>"
+	tweak = Tweak()
+	{
+		category	= "Settings"
+		title		= "Zoom Amount"
+		sortindex	= "3"
+	}
+}
+
+float1("cAmount")
+{
+	x     = "<cg02_x>"
+	tweak = Tweak()
+	{
+		category	= "Settings"
+		title		= "Chromatic Aberration Amount"
+		sortindex	= "4"
+	}
+}
+
+float1("dAmount")
+{
+	x     = "<cg03_x>"
+	tweak = Tweak()
+	{
+		category	= "Settings"
+		title		= "Distortion Amount"
+		sortindex	= "5"
+	}
+}
+
+//----------------------------------------------------------------
+
+Technique("lit")
+{
+    // Required for blurred scopes
+	state = State() : "disable + depthTestOnly"
+	{
+		stencilFront = "write stencil"
+		stencilRef = 128
+	}
+
+    // We need to keep this or else the compiler looks for a different
+    // compiled version of thermal scope that doesn't exist, as they compile
+    // them with different defines
+	defines = "USE_VERTCOL 0"
+
+    // Piggyback off the thermal scope vertex shader
+    // we're only applying pixel shading 
+	vs = VertexShader()
+	{
+		source = "specialty/thermal_scope.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "distorted_scope.hlsl"
+        // This texture is a code texture we get that is the current scene
+        // rendered, unfortunately it includes the viewmodel and Bo3 does not
+		// pass a viewmodel-less scene texture like MW appears to do.
+		sceneTexture = CodeTexture("resolvedPostSun")
+		textureSampler = Sampler("tile both", "nomip bilinear")
+	}
+}
