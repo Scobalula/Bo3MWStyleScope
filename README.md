@@ -25,6 +25,10 @@ Normal Map Example (thanks to Kurururu):
 
 ![Normal Map](https://i.imgur.com/CBA9IfU.png)
 
+# Keylines
+
+Unfortunately due to how keylines are handled by default in Black Ops III, they may remain at their normal scale and look like they are floating. This cannot be fixed right now and doesn't cause a lot of issues so it's unlikely to be a focus to waste time on. Focus on the zombies.
+
 # Reporting Problems
 
 ❤️ You can also join my Discord to report issues or get general help ❤️
