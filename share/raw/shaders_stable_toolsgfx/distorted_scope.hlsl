@@ -46,12 +46,12 @@ float4 ps_main(in const VertexShaderOutput input) : SV_TARGET
 	// Revert back to 0 to 1.
 	uv = uv * 0.5 + 0.5;
 	// Set the all thing
-    float4 col;
+	float4 col;
 	// Apply some chromatic aberration to the final image to give it that "lense" like appearance.
-    col.r = sceneTexture.Sample(textureSampler, float2(uv.x + dVal.x * cAmount, uv.y) ).r;
-    col.g = sceneTexture.Sample(textureSampler, uv.xy).g;
-    col.b = sceneTexture.Sample(textureSampler, float2(uv.x - dVal.y * cAmount, uv.y) ).b;
-    col.a = 1;
+	col.r = sceneTexture.Sample(textureSampler, float2(uv.x + dVal.x * cAmount, uv.y) ).r;
+	col.g = sceneTexture.Sample(textureSampler, uv.xy).g;
+	col.b = sceneTexture.Sample(textureSampler, float2(uv.x - dVal.y * cAmount, uv.y) ).b;
+	col.a = 1;
 	// We are now ready to break like Harry's perks.
 	return col;
 }
