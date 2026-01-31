@@ -17,6 +17,18 @@ Globals()
 
 //----------------------------------------------------------------
 
+Texture("blendMap")
+{
+	image 	 = Image(<colorMap01, $white_diffuse>)
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Textures"
+		title		= "Blend Map"
+		sortindex	= "2"
+	}
+}
+
 Texture("distortionMap")
 {
 	image 	 = Image(<colorMap00, $identitynormalmap>)
@@ -92,5 +104,6 @@ Technique("lit")
 		// pass a viewmodel-less scene texture like MW appears to do.
 		sceneTexture = CodeTexture("resolvedPostSun")
 		textureSampler = Sampler("tile both", "nomip bilinear")
+		clampSampler = Sampler("no tile", "nomip bilinear")
 	}
 }
