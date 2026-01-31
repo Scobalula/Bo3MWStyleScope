@@ -1,6 +1,6 @@
 # 🔭 Bo3MWStyleScope 🔭
 
-This repo holds a basic shader for use with Black Ops III weapons that mimics Modern Warfare's zoomed scope shader. The distortion can be controlled by a normal map and some settings.
+This repo holds a basic shader for use with Black Ops III weapons that mimics Modern Warfare's zoomed scope shader with a vignette. The distortion can be controlled by a normal map and some settings. The vignette is handled by a "blend map" that 
 
 # Installation
 
@@ -17,13 +17,19 @@ Material Type: distorted_scope
 
 Once done, you can assign a normal map to handle distortion, if you don't want distortion, leave this blank and set the Distortion Amount to `0`. To control the zoom, simply set the zoom value to what you want. If you decide to use distortion, you'll need to make sure your mesh has suitable UVs and is towards the front of the gun on top of everything else.
 
-For example:
+The vignette is controlled via a "blend map" that you can assign, if you don't want the vignette set this to $whitetransparent_color or pull an older version from the releases.
 
-![Example](https://i.imgur.com/C2Y0sM2.png)
+For example (included in repo as an example):
+
+![Example](img/ape_example.png)
 
 Normal Map Example (thanks to Kurururu):
 
-![Normal Map](https://i.imgur.com/CBA9IfU.png)
+![Normal Map](img/test_normal.png)
+
+Blend Map Example:
+
+![Blend Map](img/test_blend.png)
 
 # Keylines
 
@@ -41,4 +47,4 @@ If you use the script there is no requirement to credit me, focus on making your
 
 # Preview
 
-![Preview](https://i.imgur.com/Yr6ukEg.jpeg)
+![Preview](img/preview.gif)
